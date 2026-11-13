@@ -1,0 +1,19 @@
+{
+  "patternName": "Synthetic sample",
+  "checkedRows": 2,
+  "issues": [
+    {
+      "code": "COUNT_MISMATCH",
+      "row": 3,
+      "message": "Row 3 declares 3 stitches but lists 2."
+    },
+    {
+      "code": "MISSING_ROW",
+      "row": 2,
+      "message": "Row 2 is missing."
+    }
+  ],
+  "status": "needs-review"
+}
+(node:965) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)

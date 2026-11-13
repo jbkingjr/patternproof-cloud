@@ -1,0 +1,24 @@
+name: PatternProof CI (prototype)
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-audit --no-fund
+      - name: Unit tests
+        run: npm run test
+      - name: Next.js build
+        run: npm run build
+      - name: Docker image build (does not push)
+        run: docker build -t patternproof-cloud:ci .
