@@ -14,6 +14,9 @@ IMAGE="${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY}/${SERVICE}:${TAG}"
 echo "Project: ${PROJECT_ID}"
 echo "Image: ${IMAGE}"
 
+echo "=== Stage 0: Prepare GCP resources ==="
+bash scripts/bootstrap-gcp.sh
+
 echo "=== Stage 1: Build and Test ==="
 echo "=== Stage 2: Push to Artifact Registry ==="
 
