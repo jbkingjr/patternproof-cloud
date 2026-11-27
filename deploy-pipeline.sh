@@ -5,6 +5,8 @@ PROJECT_ID=$(gcloud config get-value project)
 REGION="us-central1"
 REPOSITORY="cloud-run-source-deploy"
 SERVICE="patternproof-cloud"
+RUNTIME_SA="patternproof-runtime@${PROJECT_ID}.iam.gserviceaccount.com"
+BUCKET="patternproof-${PROJECT_ID}-samples"
 TAG=$(date -u +%Y%m%d-%H%M%S)
 
 IMAGE="${REGION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY}/${SERVICE}:${TAG}"
@@ -29,6 +31,8 @@ gcloud run deploy "${SERVICE}" \
   --memory=512Mi \
   --min-instances=0 \
   --max-instances=1 \
+  --service-account="${RUNTIME_SA}" \
+  --update-env-vars="PATTERNPROOF_BUCKET=${BUCKET}" \
   --no-allow-unauthenticated \
   --quiet
 
